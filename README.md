@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+✏️ Drawing Editor - Prueba Técnica
 
-## Getting Started
+Este proyecto es un editor visual colaborativo estilo [tldraw](https://www.tldraw.com/), desarrollado como parte de una prueba técnica. Incluye integración con `tldraw`, `shadcn/ui` para los componentes UI, gestión de estado de carga y errores, y estructura de backend mediante `tRPC`. Inicialmente estaba planteado el uso de IA, pero se descartó por limitaciones de acceso en los servicios gratuitos.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🛠️ Tecnologías Utilizadas
+
+- **Next.js 15**
+- **React 19**
+- **TypeScript**
+- **Tailwind CSS**
+- **shadcn/ui**
+- **tRPC**
+- **tldraw**
+- **DeepAI** – IA para generación de formas
+- **Vercel** – para despliegue
+
+---
+
+## 🧱 Estructura del Proyecto
+
+├── app/ # Rutas (app router)
+│ ├── page.tsx # Home
+│ └── editor/page.tsx # Página del editor de dibujo
+│ └── generate-image/page.tsx # Página para generar imagenes con IA
+├── components/ # Componentes reutilizables
+│ ├── ui/ # Componentes de shadcn
+│ ├── dialog/ # Dialogo con variantes (error/info/etc)
+│ └── buttons/ # Botones con soporte para loading
+├── lib/
+│ └── utils.ts # Funciones auxiliares
+├── server/
+│ └── trpc/ # tRPC handler y routers
+├── styles/ # Tailwind config
+└── public/
+
+---
+
+## 🚀 Funcionalidades
+
+### ✅ Página de Inicio
+
+- Diseño limpio y simple con dos botones para navegar a las paginas.
+- Skeleton de carga mientras se monta el editor.
+
+### ✅ Editor de Dibujo
+
+- Basado en `tldraw` con soporte completo para formas, texto, conexiones, etc.
+- UI simple y funcional.
+
+### ✅ Botón Personalizado con Loading
+
+- Botón reutilizable que acepta una prop `isLoading` y cambia su estilo/interacción automáticamente.
+
+```tsx
+<ButtonWithLoading isLoading={true}>Guardar</ButtonWithLoading>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### ✅ tRPC para operaciones de servidor
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```tsx
+const mutation = trpc.example.saveDrawing.useMutation()
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<Button
+  disabled={mutation.isLoading}
+  onClick={() => mutation.mutate({ data })}
+>
+  {mutation.isLoading ? "Guardando..." : "Guardar"}
+</Button>
+```
 
-## Learn More
+### ✅ Generación Automática con IA
 
-To learn more about Next.js, take a look at the following resources:
+- Al introducir una descripción en lenguaje natural, se conecta con la API de **DeepAI** para interpretar y generar automáticamente las formas correspondientes dentro del editor.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🧪 Pendiente o Fuera de Alcance
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+❌ Integración estable con IA generativa (por restricciones de uso gratuito en OpenAI, HuggingFace, DeepAI…)
 
-## Deploy on Vercel
+### ✅ Instalación
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+pnpm install
+pnpm run dev
