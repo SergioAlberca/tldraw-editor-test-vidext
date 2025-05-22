@@ -74,11 +74,26 @@ const mutation = trpc.example.saveDrawing.useMutation()
 
 - Al introducir una descripción en lenguaje natural, se conecta con la API de **DeepAI** para interpretar y generar automáticamente las formas correspondientes dentro del editor.
 
-### 🧪 Pendiente o Fuera de Alcance
+## Mejoras futuras
 
-❌ Integración estable con IA generativa (por restricciones de uso gratuito en OpenAI, HuggingFace, DeepAI…)
+- ✅ Incluir más tests para cubrir casos adicionales y asegurar mayor estabilidad de la lógica de negocio.
+- ✅ Recuperar los datos iniciales del documento directamente desde el servidor en lugar de hacerlo del lado del cliente mediante hooks.
+
+### 🧪 Testing
+
+Este proyecto utiliza `jest` y `@testing-library/react` para realizar los tests.
+
+#### Ejecutar todos los tests
+
+```bash
+pnpm test
+
+```
 
 ### ✅ Instalación
 
+```bash
 pnpm install
-pnpm run dev
+pnpm dev
+
+```
