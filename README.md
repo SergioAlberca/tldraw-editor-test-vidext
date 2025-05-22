@@ -57,6 +57,7 @@ const mutation = trpc.example.saveDrawing.useMutation()
 - ✅ Incluir más tests para cubrir casos adicionales y asegurar mayor estabilidad de la lógica de negocio.
 - ✅ Recuperar los datos iniciales del documento directamente desde el servidor en lugar de hacerlo del lado del cliente mediante hooks.
 - ✅ Mejorar el motor de IA encargado de generar las imágenes, ya que actualmente funciona de manera bastante deficiente y no ofrece resultados satisfactorios.
+- ✅ Resolver el error `Type instantiation is excessively deep and possibly infinite` que aparece en la compilación debido a la complejidad de tipos en `trpc`. Por falta de tiempo, esta solución no se ha podido implementar aún.
 
 ### 🧪 Testing
 
