@@ -14,28 +14,6 @@ Este proyecto es un editor visual colaborativo estilo [tldraw](https://www.tldra
 - **tRPC**
 - **tldraw**
 - **DeepAI** – IA para generación de formas
-- **Vercel** – para despliegue
-
----
-
-## 🧱 Estructura del Proyecto
-
-├── app/ # Rutas (app router)
-│ ├── page.tsx # Home
-│ └── editor/page.tsx # Página del editor de dibujo
-│ └── generate-image/page.tsx # Página para generar imagenes con IA
-├── components/ # Componentes reutilizables
-│ ├── ui/ # Componentes de shadcn
-│ ├── dialog/ # Dialogo con variantes (error/info/etc)
-│ └── buttons/ # Botones con soporte para loading
-├── lib/
-│ └── utils.ts # Funciones auxiliares
-├── server/
-│ └── trpc/ # tRPC handler y routers
-├── styles/ # Tailwind config
-└── public/
-
----
 
 ## 🚀 Funcionalidades
 
@@ -78,6 +56,7 @@ const mutation = trpc.example.saveDrawing.useMutation()
 
 - ✅ Incluir más tests para cubrir casos adicionales y asegurar mayor estabilidad de la lógica de negocio.
 - ✅ Recuperar los datos iniciales del documento directamente desde el servidor en lugar de hacerlo del lado del cliente mediante hooks.
+- ✅ Mejorar el motor de IA encargado de generar las imágenes, ya que actualmente funciona de manera bastante deficiente y no ofrece resultados satisfactorios.
 
 ### 🧪 Testing
 
